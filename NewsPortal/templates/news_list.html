@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load custom_filters %}
+
+{% block title %}
+Posts
+{% endblock title %}
+
+{% block content %}
+<h1>Все посты({{ news_list | length }})</h1>
+
+
+<div classs="container">
+    <div class="row", style="margin-top:50px;">
+        {% for new in news_list %}
+        <div class="col-sm">
+            <div class="card border-secondary mb-3" style="max-width: 20 rem">
+                <div class="card-header">{{new.title|censor}}</div>
+                <div class="card-body">
+                    <h4 class="card-title">{{new.created|date:'d M Y'}}</h4>
+                    <p class="card_text">{{new.content|truncatechars:20|censor}}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock content %}

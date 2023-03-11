@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% load custom_filters %}
+
+{% block title %}
+Новость
+{% endblock title %}
+
+
+{% block content %}
+
+<h1>{{ news|title }}</h1>
+<h3>{{ news.content|censor }}</h3>
+Загружено: {{news.created|date:'d M Y'}}
+
+{% endblock content %}
