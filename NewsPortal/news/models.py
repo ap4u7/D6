@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 class Author(models.Model):
@@ -39,6 +40,10 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField()
     rating = models.IntegerField(default=0)
+
+    def get_absolute_url(self):
+        return reverse('news', args=[str(self.id)])
+
 
     def like(self):
         self.rating += 1
